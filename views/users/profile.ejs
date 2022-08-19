@@ -1,0 +1,12 @@
+<% layout('layouts/main')%>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title"><%= user.username %></h5>
+            <h6 class="card-text text-muted"><% user.email %> </h6>
+            <ul>
+            <% for (let camp of ownedCamps) { %>
+                <li class="card-text"><a href="/campground/<%= camp._id %>"><%= camp.title %></a></li>    
+            <% } %>  
+            </ul>
+        </div>
+    </div>

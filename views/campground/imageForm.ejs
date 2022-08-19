@@ -1,0 +1,29 @@
+<% layout('layouts/main')%>
+<div class="row">
+    <h1 class="text-center">Add images to Campground</h1>
+    <div class="col-6 offset-3">
+        <h5>Add or Delete Images</h5>
+        <form class="validate-form" action="/campground/<%=campground._id%>/images?_method=PUT" method="POST" novalidate enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label" for="image">Image Url</label>
+                <input type="file" name="image" multiple>
+                <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div>
+                <div class="mb-3">
+                    <% campground.images.forEach(function(img, i) { %>
+                        <img src="<%= img.url %> " class="image-thumnail" alt="">
+                        <div class="form-check-inline">
+                            <input type="checkbox" id="img<%= i %>" name="deleteImages[]" value="<%= img.fileName %>">
+                        </div>
+                        <label for="img<%= i %>">Delete?</label>
+                    <%  }) %> 
+                </div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-info">Save</button>
+            </div>
+        </form>
+        <a href="/campground/<%= campground._id%>">Back To Campground</a>
+    </div>
+</div>
